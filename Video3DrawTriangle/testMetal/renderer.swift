@@ -15,9 +15,13 @@ class Renderer:NSObject {
     }
     var device:MTLDevice!
     var vertices:[Float] = [
-    0,1,0,
-    -1,-1,0,
-    1,-1,0
+    0,0.75,0,
+    -0.75,-0.75,0,
+    0.75,-0.75,0,
+    
+    0,-0.75,0,
+    0.75,0.75,0,
+    -0.75,0.75,0
     ]
     var pipelineState: MTLRenderPipelineState?
     var vertexBuffer:MTLBuffer?
