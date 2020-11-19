@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		918FC39E2562B2E8003489CB /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 918FC39D2562B2E8003489CB /* Shaders.metal */; };
+		918FC6792566D368003489CB /* train.obj in Resources */ = {isa = PBXBuildFile; fileRef = 918FC6772566D367003489CB /* train.obj */; };
+		918FC67A2566D368003489CB /* train.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 918FC6782566D368003489CB /* train.mtl */; };
 		91CDF879255ED43900FC9DAC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CDF878255ED43900FC9DAC /* AppDelegate.swift */; };
 		91CDF87B255ED43900FC9DAC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CDF87A255ED43900FC9DAC /* ViewController.swift */; };
 		91CDF87D255ED44800FC9DAC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91CDF87C255ED44800FC9DAC /* Assets.xcassets */; };
@@ -37,6 +39,8 @@
 
 /* Begin PBXFileReference section */
 		918FC39D2562B2E8003489CB /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
+		918FC6772566D367003489CB /* train.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = train.obj; sourceTree = "<group>"; };
+		918FC6782566D368003489CB /* train.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = train.mtl; sourceTree = "<group>"; };
 		91CDF875255ED43900FC9DAC /* Pipeline.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pipeline.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		91CDF878255ED43900FC9DAC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		91CDF87A255ED43900FC9DAC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -82,6 +86,8 @@
 		91CDF86C255ED43900FC9DAC = {
 			isa = PBXGroup;
 			children = (
+				918FC6782566D368003489CB /* train.mtl */,
+				918FC6772566D367003489CB /* train.obj */,
 				91CDF877255ED43900FC9DAC /* Pipeline */,
 				91CDF88A255ED44900FC9DAC /* PipelineTests */,
 				91CDF895255ED44900FC9DAC /* PipelineUITests */,
@@ -238,6 +244,8 @@
 			files = (
 				91CDF87D255ED44800FC9DAC /* Assets.xcassets in Resources */,
 				91CDF880255ED44800FC9DAC /* Main.storyboard in Resources */,
+				918FC67A2566D368003489CB /* train.mtl in Resources */,
+				918FC6792566D368003489CB /* train.obj in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
