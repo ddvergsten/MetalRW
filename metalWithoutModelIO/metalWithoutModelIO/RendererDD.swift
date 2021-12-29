@@ -76,12 +76,12 @@ extension Renderer: MTKViewDelegate{
     
     func draw(in view: MTKView) {
         var triangleSize = 0.5
-        
+        var zvalue = 0.0
         let triangleVertices:[AAPLVertex] =
         [
-            AAPLVertex(position: vector_float2((Float(triangleSize)), Float(-triangleSize)), color: vector_float4(1.0, 0.0, 0.0, 1.0)),
-            AAPLVertex(position: vector_float2(-(Float(triangleSize)), -Float(triangleSize)), color: vector_float4(0.0, 1.0, 0.0, 1.0)),
-            AAPLVertex(position: vector_float2(0.0, Float(triangleSize)), color: vector_float4(0.0, 0.0, 1.0, 1.0))
+            AAPLVertex(position: vector_float3((Float(triangleSize)), Float(-triangleSize), Float(zvalue)), color: vector_float4(1.0, 0.0, 0.0, 1.0)),
+            AAPLVertex(position: vector_float3(-(Float(triangleSize)), -Float(triangleSize), Float(zvalue)), color: vector_float4(0.0, 1.0, 0.0, 1.0)),
+            AAPLVertex(position: vector_float3(0.0, Float(triangleSize), Float(zvalue)), color: vector_float4(0.0, 0.0, 1.0, 1.0))
         ]
         guard
           let descriptor = view.currentRenderPassDescriptor,
