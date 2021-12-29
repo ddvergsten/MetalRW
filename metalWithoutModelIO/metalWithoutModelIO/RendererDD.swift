@@ -54,14 +54,7 @@ class Renderer: NSObject{
         aspect = 0.0
         super.init()
         
-        
-        
-        
-        
-        
-        //metalView.device = device
-        //metalView.depthStencilPixelFormat = .depth32Float
-        metalView.clearColor = MTLClearColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 0.0)
+        metalView.clearColor = MTLClearColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
         metalView.delegate = self
         metalView.drawableSize
         mtkView(metalView, drawableSizeWillChange: metalView.drawableSize)//metalView.bounds.size)
@@ -83,10 +76,6 @@ extension Renderer: MTKViewDelegate{
     
     func draw(in view: MTKView) {
         var triangleSize = 0.5
-        //var el1 = AAPLVertex()
-        //el1.position = [Float(triangleSize, -triangleSize]
-       // el1.color = [1.0, 0.0, 0.0, 1.0]
-        
         
         let triangleVertices:[AAPLVertex] =
         [
@@ -101,17 +90,18 @@ extension Renderer: MTKViewDelegate{
           commandBuffer.makeRenderCommandEncoder(descriptor: descriptor) else {
             return
         }
-        renderEncoder.setDepthStencilState(depthStencilState)
-       var vpx = _viewport.x
-        var vpy = _viewport.y
-        renderEncoder.setViewport(MTLViewport(originX: 0.0, originY: 00, width: Double(vpx), height: Double(_viewport.y), znear: 0.0, zfar: 1.0))
-        renderEncoder.setRenderPipelineState(pipelineState)
-        var verticesSize = MemoryLayout.size(ofValue: triangleVertices)
-        //renderEncoder.setVertexBytes(triangleVertices, length: MemoryLayout.size(ofValue: //triangleVertices), index: Int(AAPLVertexInputIndexVertices.rawValue))
-        renderEncoder.setVertexBytes(triangleVertices, length: 96, index: Int(AAPLVertexInputIndexVertices.rawValue))
+        // = MemoryLayout<AAPLVertex>.size
         
-        //let count = 1
-        //let pointPointer = UnsafeRawPointer(
+       // var trsize = MemoryLayout.size(ofValue: triangleVertices)
+       // var trstride = MemoryLayout.stride(ofValue: triangleVertices)
+        renderEncoder.setDepthStencilState(depthStencilState)
+        //var vpx = _viewport.x
+        //var vpy = _viewport.y
+        renderEncoder.setViewport(MTLViewport(originX: 0.0, originY: 00, width: Double(_viewport.x), height: Double(_viewport.y), znear: 0.0, zfar: 1.0))
+        renderEncoder.setRenderPipelineState(pipelineState)
+        
+        var verticesSize = MemoryLayout<AAPLVertex>.size * triangleVertices.count
+        renderEncoder.setVertexBytes(triangleVertices, length: MemoryLayout<AAPLVertex>.size * triangleVertices.count, index: Int(AAPLVertexInputIndexVertices.rawValue))
         
         var stride = MemoryLayout<vector_float2>.stride
         renderEncoder.setVertexBytes(&_viewport, length: MemoryLayout<vector_float2>.stride, index: Int(AAPLVertexInputIndexViewportSize.rawValue))
@@ -123,13 +113,5 @@ extension Renderer: MTKViewDelegate{
         }
         commandBuffer.present(drawable)
         commandBuffer.commit()
-        //        static const AAPLVertex triangleVertices[] =
-//        {
-//            // 2D positions,    RGBA colors
-//            { {  250,  -250 }, { 1, 0, 0, 1 } },
-//            { { -250,  -250 }, { 0, 1, 0, 1 } },
-//            { {    0,   250 }, { 0, 0, 1, 1 } },
-//        };
-        print("drawing scene")
     }
 }
