@@ -62,8 +62,8 @@
             filePath = "metalWithoutModelIO/RendererDD.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "112"
-            endingLineNumber = "112"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
             landmarkName = "draw(in:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -78,8 +78,8 @@
             filePath = "metalWithoutModelIO/RendererDD.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
+            startingLineNumber = "116"
+            endingLineNumber = "116"
             landmarkName = "draw(in:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -94,9 +94,9 @@
             filePath = "metalWithoutModelIO/Shaders.metal"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
-            landmarkName = "vertexShader(uint vertexID [[vertex_id]], constant AAPLVertex *vertices [[buffer(AAPLVertexInputIndexVertices)]], constant vector_uint2 *viewportSizePointer [[buffer(AAPLVertexInputIndexViewportSize)]])"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "vertexShader(uint vertexID [[vertex_id]], constant AAPLVertex *vertices [[buffer(AAPLVertexInputIndexVertices)]], constant vector_uint2 *viewportSizePointer [[buffer(AAPLVertexInputIndexViewportSize)]], constant matrix_float4x4 &amp;rotation [[buffer(2)]])"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
@@ -110,9 +110,9 @@
             filePath = "metalWithoutModelIO/Shaders.metal"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
-            landmarkName = "vertexShader(uint vertexID [[vertex_id]], constant AAPLVertex *vertices [[buffer(AAPLVertexInputIndexVertices)]], constant vector_uint2 *viewportSizePointer [[buffer(AAPLVertexInputIndexViewportSize)]])"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "vertexShader(uint vertexID [[vertex_id]], constant AAPLVertex *vertices [[buffer(AAPLVertexInputIndexVertices)]], constant vector_uint2 *viewportSizePointer [[buffer(AAPLVertexInputIndexViewportSize)]], constant matrix_float4x4 &amp;rotation [[buffer(2)]])"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
@@ -126,9 +126,9 @@
             filePath = "metalWithoutModelIO/Shaders.metal"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
-            landmarkName = "vertexShader(uint vertexID [[vertex_id]], constant AAPLVertex *vertices [[buffer(AAPLVertexInputIndexVertices)]], constant vector_uint2 *viewportSizePointer [[buffer(AAPLVertexInputIndexViewportSize)]])"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "vertexShader(uint vertexID [[vertex_id]], constant AAPLVertex *vertices [[buffer(AAPLVertexInputIndexVertices)]], constant vector_uint2 *viewportSizePointer [[buffer(AAPLVertexInputIndexViewportSize)]], constant matrix_float4x4 &amp;rotation [[buffer(2)]])"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
@@ -136,70 +136,6 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "D95312D7-FCDC-4050-9DE6-65FEDF3FEA9B"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "metalWithoutModelIO/RendererDD.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
-            landmarkName = "mtkView(_:drawableSizeWillChange:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "85F0B8B9-458F-4E2F-93F0-D1B015301375"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "metalWithoutModelIO/RendererDD.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
-            landmarkName = "draw(in:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "8DAE5C98-2BE8-48F4-B7ED-B63F69CD1288"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "metalWithoutModelIO/RendererDD.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
-            landmarkName = "draw(in:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "AFE2FBCC-5E25-4E36-BDFB-8761210839DF"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "metalWithoutModelIO/RendererDD.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
-            landmarkName = "draw(in:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "55BEE82E-BB63-4058-9E99-D682D1269F15"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -215,15 +151,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "B1D22382-81AB-4DA8-A4FB-52567E9B0CFA"
+            uuid = "85F0B8B9-458F-4E2F-93F0-D1B015301375"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "metalWithoutModelIO/RendererDD.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
             landmarkName = "draw(in:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -231,15 +167,47 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "7F98D6F3-100B-4E5F-811B-1C73906D2819"
+            uuid = "8DAE5C98-2BE8-48F4-B7ED-B63F69CD1288"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "metalWithoutModelIO/RendererDD.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
+            landmarkName = "draw(in:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "55BEE82E-BB63-4058-9E99-D682D1269F15"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "metalWithoutModelIO/RendererDD.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
+            landmarkName = "mtkView(_:drawableSizeWillChange:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B1D22382-81AB-4DA8-A4FB-52567E9B0CFA"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "metalWithoutModelIO/RendererDD.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
             landmarkName = "draw(in:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -254,8 +222,8 @@
             filePath = "metalWithoutModelIO/RendererDD.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
             landmarkName = "draw(in:)"
             landmarkType = "7">
          </BreakpointContent>

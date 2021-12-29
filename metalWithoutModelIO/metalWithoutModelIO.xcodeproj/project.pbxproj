@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		915AB014277C71F300360C19 /* MathLirbrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915AB013277C71F300360C19 /* MathLirbrary.swift */; };
 		91C43B9C276A319A00AC9C68 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C43B9B276A319A00AC9C68 /* AppDelegate.swift */; };
 		91C43B9E276A319A00AC9C68 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C43B9D276A319A00AC9C68 /* SceneDelegate.swift */; };
 		91C43BA0276A319A00AC9C68 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C43B9F276A319A00AC9C68 /* ViewController.swift */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		915AB013277C71F300360C19 /* MathLirbrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathLirbrary.swift; sourceTree = "<group>"; };
 		91C43B98276A319A00AC9C68 /* metalWithoutModelIO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = metalWithoutModelIO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		91C43B9B276A319A00AC9C68 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		91C43B9D276A319A00AC9C68 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -81,9 +83,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		915AB012277C71D600360C19 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				915AB013277C71F300360C19 /* MathLirbrary.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
 		91C43B8F276A319A00AC9C68 = {
 			isa = PBXGroup;
 			children = (
+				915AB012277C71D600360C19 /* Utility */,
 				91C43B9A276A319A00AC9C68 /* metalWithoutModelIO */,
 				91C43BB1276A319A00AC9C68 /* metalWithoutModelIOTests */,
 				91C43BBB276A319A00AC9C68 /* metalWithoutModelIOUITests */,
@@ -266,6 +277,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				915AB014277C71F300360C19 /* MathLirbrary.swift in Sources */,
 				91C43BCF276A43E700AC9C68 /* RendererDD.swift in Sources */,
 				91C43BCC276A31ED00AC9C68 /* Shaders.metal in Sources */,
 				91C43BA0276A319A00AC9C68 /* ViewController.swift in Sources */,

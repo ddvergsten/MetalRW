@@ -10,12 +10,21 @@ Header containing types and enum constants shared between Metal shaders and C/Ob
 
 #include <simd/simd.h>
 
+typedef struct {
+  matrix_float4x4 modelMatrix;
+  matrix_float4x4 viewMatrix;
+  matrix_float4x4 projectionMatrix;
+    matrix_float3x3 normalMatrix;
+} Uniforms;
+
+
 // Buffer index values shared between shader and C code to ensure Metal shader buffer inputs
 // match Metal API buffer set calls.
 typedef enum AAPLVertexInputIndex
 {
     AAPLVertexInputIndexVertices     = 0,
     AAPLVertexInputIndexViewportSize = 1,
+    AAPLrotation = 2,
 } AAPLVertexInputIndex;
 
 //  This structure defines the layout of vertices sent to the vertex

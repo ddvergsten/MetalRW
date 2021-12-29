@@ -62,6 +62,7 @@ class Renderer: NSObject{
     }
     var aspect:Float
     var _viewport:vector_uint2 = vector_uint2(0, 0)
+    var rotation:Float = 0.0
 }
 
 extension Renderer: MTKViewDelegate{
@@ -75,8 +76,9 @@ extension Renderer: MTKViewDelegate{
     }
     
     func draw(in view: MTKView) {
+        rotation += 0.01
         var triangleSize = 0.5
-        var zvalue = 0.0
+        var zvalue = 0.5
         let triangleVertices:[AAPLVertex] =
         [
             AAPLVertex(position: vector_float3((Float(triangleSize)), Float(-triangleSize), Float(zvalue)), color: vector_float4(1.0, 0.0, 0.0, 1.0)),
@@ -90,15 +92,15 @@ extension Renderer: MTKViewDelegate{
           commandBuffer.makeRenderCommandEncoder(descriptor: descriptor) else {
             return
         }
-        // = MemoryLayout<AAPLVertex>.size
+       
         
-       // var trsize = MemoryLayout.size(ofValue: triangleVertices)
-       // var trstride = MemoryLayout.stride(ofValue: triangleVertices)
+        
         renderEncoder.setDepthStencilState(depthStencilState)
-        //var vpx = _viewport.x
-        //var vpy = _viewport.y
         renderEncoder.setViewport(MTLViewport(originX: 0.0, originY: 00, width: Double(_viewport.x), height: Double(_viewport.y), znear: 0.0, zfar: 1.0))
         renderEncoder.setRenderPipelineState(pipelineState)
+        
+        var rotation:float4x4 = float4x4(rotation: float3(0.0, 0.0, rotation))
+        renderEncoder.setVertexBytes(&rotation, length: MemoryLayout<float4x4>.stride, index: Int(AAPLrotation.rawValue))
         
         var verticesSize = MemoryLayout<AAPLVertex>.size * triangleVertices.count
         renderEncoder.setVertexBytes(triangleVertices, length: MemoryLayout<AAPLVertex>.size * triangleVertices.count, index: Int(AAPLVertexInputIndexVertices.rawValue))
