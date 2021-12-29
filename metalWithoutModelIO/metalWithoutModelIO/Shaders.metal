@@ -31,7 +31,8 @@ vertex RasterizerData
 vertexShader(uint vertexID [[vertex_id]],
              constant AAPLVertex *vertices [[buffer(AAPLVertexInputIndexVertices)]],
              constant vector_uint2 *viewportSizePointer [[buffer(AAPLVertexInputIndexViewportSize)]],
-             constant matrix_float4x4 &rotation [[buffer(2)]])
+             constant matrix_float4x4 &rotation [[buffer(2)]],
+             constant matrix_float4x4 &ortho [[buffer(3)]])
 {
     RasterizerData out;
 
@@ -48,7 +49,7 @@ vertexShader(uint vertexID [[vertex_id]],
     //  divide the pixel coordinates by half the size of the viewport.
     out.position = vector_float4(0.0, 0.0, 0.0, 1.0);
     out.position.xyz = pixelSpacePosition  ;/// (viewportSize / 2.0);
-    out.position = rotation * out.position ;
+    out.position = ortho * rotation * out.position ;
     // Pass the input color directly to the rasterizer.
     out.color = vertices[vertexID].color;
 

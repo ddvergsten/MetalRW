@@ -77,8 +77,8 @@ extension Renderer: MTKViewDelegate{
     
     func draw(in view: MTKView) {
         rotation += 0.01
-        var triangleSize = 0.5
-        var zvalue = 0.5
+        var triangleSize = 2.0
+        var zvalue = 0.0
         let triangleVertices:[AAPLVertex] =
         [
             AAPLVertex(position: vector_float3((Float(triangleSize)), Float(-triangleSize), Float(zvalue)), color: vector_float4(1.0, 0.0, 0.0, 1.0)),
@@ -99,7 +99,13 @@ extension Renderer: MTKViewDelegate{
         renderEncoder.setViewport(MTLViewport(originX: 0.0, originY: 00, width: Double(_viewport.x), height: Double(_viewport.y), znear: 0.0, zfar: 1.0))
         renderEncoder.setRenderPipelineState(pipelineState)
         
-        var rotation:float4x4 = float4x4(rotation: float3(0.0, 0.0, rotation))
+        var ortho:float4x4 = float4x4(orthoLeft: -10.0, right: 10.0, bottom: -10.0, top: 10.0, near: 0.0, far: 10.0)
+        renderEncoder.setVertexBytes(&ortho, length: MemoryLayout<float4x4>.stride, index: Int(AAPLOrtho.rawValue))
+        
+        
+        var translation:float4x4 = float4x4(translation: float3(0.0, 0.0, 2.0))
+        var rotation:float4x4 = float4x4(rotation: float3(0.0, rotation, 0.0))
+        rotation = translation * rotation
         renderEncoder.setVertexBytes(&rotation, length: MemoryLayout<float4x4>.stride, index: Int(AAPLrotation.rawValue))
         
         var verticesSize = MemoryLayout<AAPLVertex>.size * triangleVertices.count

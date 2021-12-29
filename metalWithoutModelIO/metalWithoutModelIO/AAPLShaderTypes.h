@@ -25,6 +25,7 @@ typedef enum AAPLVertexInputIndex
     AAPLVertexInputIndexVertices     = 0,
     AAPLVertexInputIndexViewportSize = 1,
     AAPLrotation = 2,
+    AAPLOrtho = 3
 } AAPLVertexInputIndex;
 
 //  This structure defines the layout of vertices sent to the vertex
