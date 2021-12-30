@@ -52,14 +52,17 @@ class Renderer: NSObject{
         metalView.depthStencilPixelFormat = .depth32Float
         pipelineState = Renderer.buildPipelineState("it works")
         aspect = 0.0
+        let cube1:Cube = Cube()
+        triangleVertices = cube1.GetModel(1.0, green: 0.0, blue: 0.0)
         super.init()
         
         metalView.clearColor = MTLClearColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
         metalView.delegate = self
-        metalView.drawableSize
+       // metalView.drawableSize
         mtkView(metalView, drawableSizeWillChange: metalView.drawableSize)//metalView.bounds.size)
         
     }
+    var triangleVertices:[AAPLVertex]
     var aspect:Float
     var _viewport:vector_uint2 = vector_uint2(0, 0)
     var rotation:Float = 0.0
@@ -77,31 +80,32 @@ extension Renderer: MTKViewDelegate{
     
     func draw(in view: MTKView) {
         rotation += 0.01
-        var triangleSizeHalf = 2.0
-        var triangleSizeFull = triangleSizeHalf * 2
-        var zvalue = 0.0
-        var colorRed:vector_float4 = vector_float4(1.0, 0.0, 0.0, 1.0)
-        var colorBlue:vector_float4 = vector_float4(0.0, 0.0, 1.0, 1.0)
-        let triangleVertices:[AAPLVertex] =
-        [
-            //red side
-            AAPLVertex(position: vector_float3((Float(triangleSizeHalf)), Float(-triangleSizeHalf), Float(zvalue)), color: colorRed),
-            AAPLVertex(position: vector_float3(-(Float(triangleSizeHalf)), -Float(triangleSizeHalf), Float(zvalue)), color: colorRed),
-            AAPLVertex(position: vector_float3(Float(triangleSizeHalf), Float(triangleSizeHalf), Float(zvalue)), color: colorRed),
-            
-            AAPLVertex(position: vector_float3((Float(triangleSizeHalf)), Float(triangleSizeHalf), Float(zvalue)), color: colorRed),
-            AAPLVertex(position: vector_float3(-(Float(triangleSizeHalf)), -Float(triangleSizeHalf), Float(zvalue)), color: colorRed),
-            AAPLVertex(position: vector_float3(Float(-triangleSizeHalf), Float(triangleSizeHalf), Float(zvalue)), color: colorRed),
-            
-            //blue side
-            AAPLVertex(position: vector_float3(Float(triangleSizeHalf), Float(triangleSizeHalf), Float(zvalue)), color: colorBlue),
-            AAPLVertex(position: vector_float3(Float(triangleSizeHalf), -Float(triangleSizeHalf), Float(zvalue + triangleSizeFull)), color: colorBlue),
-            AAPLVertex(position: vector_float3(Float(triangleSizeHalf), -Float(triangleSizeHalf), Float(zvalue)), color: colorBlue),
-            
-            AAPLVertex(position: vector_float3((Float(triangleSizeHalf)), Float(triangleSizeHalf), Float(zvalue)), color: colorBlue),
-            AAPLVertex(position: vector_float3((Float(triangleSizeHalf)), Float(triangleSizeHalf), Float(zvalue + triangleSizeFull)), color: colorBlue),
-            AAPLVertex(position: vector_float3(Float(triangleSizeHalf), -Float(triangleSizeHalf), Float(zvalue + triangleSizeFull)), color: colorBlue)
-        ]
+//        var triangleSizeHalf = 40.0
+//        var triangleSizeFull = triangleSizeHalf * 2
+//        var zvalue = 0.0
+//        var colorRed:vector_float4 = vector_float4(1.0, 0.0, 0.0, 1.0)
+//        var colorBlue:vector_float4 = vector_float4(0.0, 0.0, 1.0, 1.0)
+//
+//        let triangleVertices:[AAPLVertex] =
+//        [
+//            //red side
+//            AAPLVertex(position: vector_float3((Float(triangleSizeHalf)), Float(-triangleSizeHalf), Float(zvalue)), color: colorRed),
+//            AAPLVertex(position: vector_float3(-(Float(triangleSizeHalf)), -Float(triangleSizeHalf), Float(zvalue)), color: colorRed),
+//            AAPLVertex(position: vector_float3(Float(triangleSizeHalf), Float(triangleSizeHalf), Float(zvalue)), color: colorRed),
+//
+//            AAPLVertex(position: vector_float3((Float(triangleSizeHalf)), Float(triangleSizeHalf), Float(zvalue)), color: colorRed),
+//            AAPLVertex(position: vector_float3(-(Float(triangleSizeHalf)), -Float(triangleSizeHalf), Float(zvalue)), color: colorRed),
+//            AAPLVertex(position: vector_float3(Float(-triangleSizeHalf), Float(triangleSizeHalf), Float(zvalue)), color: colorRed),
+//
+//            //blue side
+//            AAPLVertex(position: vector_float3(Float(triangleSizeHalf), Float(triangleSizeHalf), Float(zvalue)), color: colorBlue),
+//            AAPLVertex(position: vector_float3(Float(triangleSizeHalf), -Float(triangleSizeHalf), Float(zvalue + triangleSizeFull)), color: colorBlue),
+//            AAPLVertex(position: vector_float3(Float(triangleSizeHalf), -Float(triangleSizeHalf), Float(zvalue)), color: colorBlue),
+//
+//            AAPLVertex(position: vector_float3((Float(triangleSizeHalf)), Float(triangleSizeHalf), Float(zvalue)), color: colorBlue),
+//            AAPLVertex(position: vector_float3((Float(triangleSizeHalf)), Float(triangleSizeHalf), Float(zvalue + triangleSizeFull)), color: colorBlue),
+//            AAPLVertex(position: vector_float3(Float(triangleSizeHalf), -Float(triangleSizeHalf), Float(zvalue + triangleSizeFull)), color: colorBlue)
+//        ]
         guard
           let descriptor = view.currentRenderPassDescriptor,
           let commandBuffer = Renderer.commandQueue.makeCommandBuffer(),
@@ -116,12 +120,12 @@ extension Renderer: MTKViewDelegate{
         renderEncoder.setViewport(MTLViewport(originX: 0.0, originY: 00, width: Double(_viewport.x), height: Double(_viewport.y), znear: 0.0, zfar: 1.0))
         renderEncoder.setRenderPipelineState(pipelineState)
         
-        var ortho:float4x4 = float4x4(orthoLeft: -10.0, right: 10.0, bottom: -10.0, top: 10.0, near: 0.0, far: 10.0)
+        var ortho:float4x4 = float4x4(orthoLeft: 0.0, right: Float(_viewport.x), bottom: 0.0, top: Float(_viewport.y), near: 0.0, far: 200.0)
         renderEncoder.setVertexBytes(&ortho, length: MemoryLayout<float4x4>.stride, index: Int(AAPLOrtho.rawValue))
         
         
-        var translation:float4x4 = float4x4(translation: float3(0.0, 0.0, 4.0))
-        var rotation:float4x4 = float4x4(rotation: float3(0.0, rotation, 0.0))
+        var translation:float4x4 = float4x4(translation: float3(Float(_viewport.x)/2, Float(_viewport.y) / 2, 100.0))
+        var rotation:float4x4 = float4x4(rotation: float3(rotation, rotation, 0.0))
         rotation = translation * rotation
         renderEncoder.setVertexBytes(&rotation, length: MemoryLayout<float4x4>.stride, index: Int(AAPLrotation.rawValue))
         
@@ -130,7 +134,7 @@ extension Renderer: MTKViewDelegate{
         
         var stride = MemoryLayout<vector_float2>.stride
         renderEncoder.setVertexBytes(&_viewport, length: MemoryLayout<vector_float2>.stride, index: Int(AAPLVertexInputIndexViewportSize.rawValue))
-        renderEncoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: 12)
+        renderEncoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: triangleVertices.count)
         
         renderEncoder.endEncoding()
         guard let drawable = view.currentDrawable else {
