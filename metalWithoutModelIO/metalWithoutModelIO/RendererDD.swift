@@ -52,17 +52,22 @@ class Renderer: NSObject{
         metalView.depthStencilPixelFormat = .depth32Float
         pipelineState = Renderer.buildPipelineState("it works")
         aspect = 0.0
-        let cube1:Cube = Cube()
-        triangleVertices = cube1.GetModel(1.0, green: 0.0, blue: 0.0)
+        //let cube1:Cube = Cube()
+        //todo: create an array of cubes
+        cubeFrontTopLeft.CreateModel(1.0, green: 0.0, blue: 0.0)
+        cubeArray.append(cubeFrontTopLeft)
+        cubeFrontTopRight.CreateModel(1.0, green: 0.0, blue: 0.0)
+        cubeArray.append(cubeFrontTopRight)
         super.init()
         
         metalView.clearColor = MTLClearColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
         metalView.delegate = self
-       // metalView.drawableSize
         mtkView(metalView, drawableSizeWillChange: metalView.drawableSize)//metalView.bounds.size)
         
     }
-    var triangleVertices:[AAPLVertex]
+    var cubeArray:[Cube] = []
+    var cubeFrontTopLeft:Cube = Cube()
+    var cubeFrontTopRight:Cube = Cube()
     var aspect:Float
     var _viewport:vector_uint2 = vector_uint2(0, 0)
     var rotation:Float = 0.0
@@ -75,37 +80,13 @@ extension Renderer: MTKViewDelegate{
         aspect = Float(view.bounds.width)/Float(view.bounds.height)
         _viewport.x = UInt32(size.width)
         _viewport.y = UInt32(size.height)
+        cubeFrontTopLeft.translation = float3(Float(_viewport.x)/2, Float(_viewport.y) / 2, 100.0)
+        cubeFrontTopRight.translation = float3(Float(_viewport.x)/2 + 40.0, Float(_viewport.y) / 2, 100.0)
         
     }
     
     func draw(in view: MTKView) {
         rotation += 0.01
-//        var triangleSizeHalf = 40.0
-//        var triangleSizeFull = triangleSizeHalf * 2
-//        var zvalue = 0.0
-//        var colorRed:vector_float4 = vector_float4(1.0, 0.0, 0.0, 1.0)
-//        var colorBlue:vector_float4 = vector_float4(0.0, 0.0, 1.0, 1.0)
-//
-//        let triangleVertices:[AAPLVertex] =
-//        [
-//            //red side
-//            AAPLVertex(position: vector_float3((Float(triangleSizeHalf)), Float(-triangleSizeHalf), Float(zvalue)), color: colorRed),
-//            AAPLVertex(position: vector_float3(-(Float(triangleSizeHalf)), -Float(triangleSizeHalf), Float(zvalue)), color: colorRed),
-//            AAPLVertex(position: vector_float3(Float(triangleSizeHalf), Float(triangleSizeHalf), Float(zvalue)), color: colorRed),
-//
-//            AAPLVertex(position: vector_float3((Float(triangleSizeHalf)), Float(triangleSizeHalf), Float(zvalue)), color: colorRed),
-//            AAPLVertex(position: vector_float3(-(Float(triangleSizeHalf)), -Float(triangleSizeHalf), Float(zvalue)), color: colorRed),
-//            AAPLVertex(position: vector_float3(Float(-triangleSizeHalf), Float(triangleSizeHalf), Float(zvalue)), color: colorRed),
-//
-//            //blue side
-//            AAPLVertex(position: vector_float3(Float(triangleSizeHalf), Float(triangleSizeHalf), Float(zvalue)), color: colorBlue),
-//            AAPLVertex(position: vector_float3(Float(triangleSizeHalf), -Float(triangleSizeHalf), Float(zvalue + triangleSizeFull)), color: colorBlue),
-//            AAPLVertex(position: vector_float3(Float(triangleSizeHalf), -Float(triangleSizeHalf), Float(zvalue)), color: colorBlue),
-//
-//            AAPLVertex(position: vector_float3((Float(triangleSizeHalf)), Float(triangleSizeHalf), Float(zvalue)), color: colorBlue),
-//            AAPLVertex(position: vector_float3((Float(triangleSizeHalf)), Float(triangleSizeHalf), Float(zvalue + triangleSizeFull)), color: colorBlue),
-//            AAPLVertex(position: vector_float3(Float(triangleSizeHalf), -Float(triangleSizeHalf), Float(zvalue + triangleSizeFull)), color: colorBlue)
-//        ]
         guard
           let descriptor = view.currentRenderPassDescriptor,
           let commandBuffer = Renderer.commandQueue.makeCommandBuffer(),
@@ -113,8 +94,6 @@ extension Renderer: MTKViewDelegate{
           commandBuffer.makeRenderCommandEncoder(descriptor: descriptor) else {
             return
         }
-       
-        
         
         renderEncoder.setDepthStencilState(depthStencilState)
         renderEncoder.setViewport(MTLViewport(originX: 0.0, originY: 00, width: Double(_viewport.x), height: Double(_viewport.y), znear: 0.0, zfar: 1.0))
@@ -124,17 +103,21 @@ extension Renderer: MTKViewDelegate{
         renderEncoder.setVertexBytes(&ortho, length: MemoryLayout<float4x4>.stride, index: Int(AAPLOrtho.rawValue))
         
         
-        var translation:float4x4 = float4x4(translation: float3(Float(_viewport.x)/2, Float(_viewport.y) / 2, 100.0))
+        
         var rotation:float4x4 = float4x4(rotation: float3(rotation, rotation, 0.0))
+        for index in 1...2{
+            
+        }
+        var translation:float4x4 = float4x4(translation: cubeFrontTopLeft.translation)
         rotation = translation * rotation
         renderEncoder.setVertexBytes(&rotation, length: MemoryLayout<float4x4>.stride, index: Int(AAPLrotation.rawValue))
         
-        var verticesSize = MemoryLayout<AAPLVertex>.size * triangleVertices.count
-        renderEncoder.setVertexBytes(triangleVertices, length: MemoryLayout<AAPLVertex>.size * triangleVertices.count, index: Int(AAPLVertexInputIndexVertices.rawValue))
+        var verticesSize = MemoryLayout<AAPLVertex>.size * cubeFrontTopLeft.triangleVertices.count
+        renderEncoder.setVertexBytes(cubeFrontTopLeft.triangleVertices, length: MemoryLayout<AAPLVertex>.size * cubeFrontTopLeft.triangleVertices.count, index: Int(AAPLVertexInputIndexVertices.rawValue))
         
         var stride = MemoryLayout<vector_float2>.stride
         renderEncoder.setVertexBytes(&_viewport, length: MemoryLayout<vector_float2>.stride, index: Int(AAPLVertexInputIndexViewportSize.rawValue))
-        renderEncoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: triangleVertices.count)
+        renderEncoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: cubeFrontTopLeft.triangleVertices.count)
         
         renderEncoder.endEncoding()
         guard let drawable = view.currentDrawable else {
