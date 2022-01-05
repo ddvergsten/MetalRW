@@ -51,13 +51,13 @@ class Renderer: NSObject{
         metalView.device = device
         metalView.depthStencilPixelFormat = .depth32Float
         pipelineState = Renderer.buildPipelineState("it works")
-        aspect = 0.0
+        _aspect = 0.0
         //let cube1:Cube = Cube()
         //todo: create an array of cubes
-        cubeFrontTopLeft.CreateModel(1.0, green: 0.0, blue: 0.0)
-        cubeArray.append(cubeFrontTopLeft)
-        cubeFrontTopRight.CreateModel(1.0, green: 0.0, blue: 0.0)
-        cubeArray.append(cubeFrontTopRight)
+        _cubeFrontTopLeft.CreateModel(1.0, green: 0.0, blue: 0.0)
+        _cubeArray.append(_cubeFrontTopLeft)
+        _cubeFrontTopRight.CreateModel(1.0, green: 0.0, blue: 0.0)
+        _cubeArray.append(_cubeFrontTopRight)
         super.init()
         
         metalView.clearColor = MTLClearColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
@@ -65,28 +65,28 @@ class Renderer: NSObject{
         mtkView(metalView, drawableSizeWillChange: metalView.drawableSize)//metalView.bounds.size)
         
     }
-    var cubeArray:[Cube] = []
-    var cubeFrontTopLeft:Cube = Cube()
-    var cubeFrontTopRight:Cube = Cube()
-    var aspect:Float
+    var _cubeArray:[Cube] = []
+    var _cubeFrontTopLeft:Cube = Cube()
+    var _cubeFrontTopRight:Cube = Cube()
+    var _aspect:Float
     var _viewport:vector_uint2 = vector_uint2(0, 0)
-    var rotation:Float = 0.0
+    var _rotation:Float = 0.0
 }
 
 extension Renderer: MTKViewDelegate{
     
     func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
         //setup our perspective matrix here?
-        aspect = Float(view.bounds.width)/Float(view.bounds.height)
+        _aspect = Float(view.bounds.width)/Float(view.bounds.height)
         _viewport.x = UInt32(size.width)
         _viewport.y = UInt32(size.height)
-        cubeFrontTopLeft.translation = float3(Float(_viewport.x)/2, Float(_viewport.y) / 2, 100.0)
-        cubeFrontTopRight.translation = float3(Float(_viewport.x)/2 + 40.0, Float(_viewport.y) / 2, 100.0)
+        _cubeFrontTopLeft.translation = float3(Float(_viewport.x)/2, Float(_viewport.y) / 2, 100.0)
+        _cubeFrontTopRight.translation = float3(Float(_viewport.x)/2 + 40.0, Float(_viewport.y) / 2, 100.0)
         
     }
     
     func draw(in view: MTKView) {
-        rotation += 0.01
+        _rotation += 0.01
         guard
           let descriptor = view.currentRenderPassDescriptor,
           let commandBuffer = Renderer.commandQueue.makeCommandBuffer(),
@@ -104,20 +104,20 @@ extension Renderer: MTKViewDelegate{
         
         
         
-        var rotation:float4x4 = float4x4(rotation: float3(rotation, rotation, 0.0))
+        var rotation:float4x4 = float4x4(rotation: float3(_rotation, _rotation, 0.0))
         for index in 1...2{
             
         }
-        var translation:float4x4 = float4x4(translation: cubeFrontTopLeft.translation)
+        let translation:float4x4 = float4x4(translation: _cubeFrontTopLeft.translation)
         rotation = translation * rotation
         renderEncoder.setVertexBytes(&rotation, length: MemoryLayout<float4x4>.stride, index: Int(AAPLrotation.rawValue))
         
-        var verticesSize = MemoryLayout<AAPLVertex>.size * cubeFrontTopLeft.triangleVertices.count
-        renderEncoder.setVertexBytes(cubeFrontTopLeft.triangleVertices, length: MemoryLayout<AAPLVertex>.size * cubeFrontTopLeft.triangleVertices.count, index: Int(AAPLVertexInputIndexVertices.rawValue))
+        //var verticesSize = MemoryLayout<AAPLVertex>.size * cubeFrontTopLeft.triangleVertices.count
+        renderEncoder.setVertexBytes(_cubeFrontTopLeft.triangleVertices, length: MemoryLayout<AAPLVertex>.size * _cubeFrontTopLeft.triangleVertices.count, index: Int(AAPLVertexInputIndexVertices.rawValue))
         
-        var stride = MemoryLayout<vector_float2>.stride
+        //var stride = MemoryLayout<vector_float2>.stride
         renderEncoder.setVertexBytes(&_viewport, length: MemoryLayout<vector_float2>.stride, index: Int(AAPLVertexInputIndexViewportSize.rawValue))
-        renderEncoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: cubeFrontTopLeft.triangleVertices.count)
+        renderEncoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: _cubeFrontTopLeft.triangleVertices.count)
         
         renderEncoder.endEncoding()
         guard let drawable = view.currentDrawable else {

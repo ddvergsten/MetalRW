@@ -468,6 +468,7 @@
 				DEVELOPMENT_TEAM = A3639RGZ9S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = metalWithoutModelIO/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Cube3DGame;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -477,8 +478,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dvergsten.metalWithoutModelIO;
+				MARKETING_VERSION = 1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dvergsten.cubegame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = metalWithoutModelIO/AAPLShaderTypes.h;
@@ -497,6 +498,7 @@
 				DEVELOPMENT_TEAM = A3639RGZ9S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = metalWithoutModelIO/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Cube3DGame;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -506,8 +508,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dvergsten.metalWithoutModelIO;
+				MARKETING_VERSION = 1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dvergsten.cubegame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = metalWithoutModelIO/AAPLShaderTypes.h;
