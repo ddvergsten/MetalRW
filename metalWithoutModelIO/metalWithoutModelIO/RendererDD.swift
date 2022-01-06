@@ -9,6 +9,7 @@ import MetalKit
 
 class Renderer: NSObject{
     let CUBESIZE:Float = 80.0
+    let CUBESPACING:Float = 5.0
     let MAXDEPTH:Float = 400.0
     let pipelineState: MTLRenderPipelineState
     static var device: MTLDevice!
@@ -61,17 +62,27 @@ class Renderer: NSObject{
         mtkView(metalView, drawableSizeWillChange: metalView.drawableSize)//metalView.bounds.size)
         
     }
-    
+    func addCube(position:float3){
+        let cube = Cube()
+        cube.CreateModel(red: 1.0, green: 1.0, blue: 1.0, cubesize: CUBESIZE )
+        cube.position = position
+        _cubeArray.append(cube)
+    }
     func createCubes(){
-        let topLeft = Cube()
-        topLeft.CreateModel(red: 1.0, green: 1.0, blue: 1.0, cubesize: CUBESIZE)
-        topLeft.position = float3(-CUBESIZE, 0.0, 0.0)
-        _cubeArray.append(topLeft)
-
-        let topRight = Cube()
-        topRight.CreateModel(red: 1.0, green: 1.0, blue: 1.0, cubesize: CUBESIZE)
-        topRight.position = float3(CUBESIZE, 0.0, 0.0)
-        _cubeArray.append(topRight)
+        var cubePlusSpace = CUBESIZE + CUBESPACING
+        for x in 0...2{
+            for y in 0...2{
+                for z in 0...2{
+                    addCube(position: float3((Float(x) * cubePlusSpace)-cubePlusSpace, (Float(y) * cubePlusSpace)-cubePlusSpace, (Float(z) * cubePlusSpace) - cubePlusSpace))
+                }
+                //addCube(position: float3((Float(x) * CUBESIZE)-CUBESIZE, (Float(y) * CUBESIZE)-CUBESIZE, 0.0))
+            }
+            
+        }
+//        addCube(position: float3(-CUBESIZE, 0.0, 0.0))
+//        addCube(position: float3(CUBESIZE, 0.0, 0.0))
+//        addCube(position: float3(CUBESIZE, 0.0, CUBESIZE * 2))
+//        addCube(position: float3(-CUBESIZE, 0.0, CUBESIZE * 2))
     }
     var _cubeArray:[Cube] = []
     var _aspect:Float
