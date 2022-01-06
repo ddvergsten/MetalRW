@@ -18,8 +18,12 @@ class Cube:NSObject{
     var frontColor:vector_float4 = vector_float4(0.0, 1.0, 0.0, 1.0)
     var backColor:vector_float4 = vector_float4(0.0, 0.0, 1.0, 1.0)
     var triangleVertices:[AAPLVertex] = []
-    var translation:float3 = float3(0.0, 0.0, 0.0)
-    func CreateModel(red:Float, green:Float, blue:Float, cubesize:Float)->[AAPLVertex] {
+    var position:float3 = float3(0.0, 0.0, 0.0)
+    var translation:float4x4  {
+        let tr:float4x4 = float4x4(translation: position)
+        return tr
+    }
+    func CreateModel(red:Float, green:Float, blue:Float, cubesize:Float){
         var color:vector_float4 = vector_float4(red, green, blue, 1.0)
         var triangleSizeHalf:Float = cubesize / 2.0
         var triangleSizeFull:Float = cubesize
@@ -81,7 +85,7 @@ class Cube:NSObject{
             AAPLVertex(position: vector_float3(-Float(triangleSizeHalf), -Float(triangleSizeHalf), Float(zvalue)), color: bottomColor),
             
         ]
-        return triangleVertices
+        //return triangleVertices
     }
     
 }

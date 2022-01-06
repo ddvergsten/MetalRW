@@ -27,10 +27,12 @@ struct RasterizerData
     float4 color;
 };
 
+//todo: remove viewportr size, this is in the ortho matrix now
+//todo: rename rotation to modelView
 vertex RasterizerData
 vertexShader(uint vertexID [[vertex_id]],
              constant AAPLVertex *vertices [[buffer(AAPLVertexInputIndexVertices)]],
-             constant vector_uint2 *viewportSizePointer [[buffer(AAPLVertexInputIndexViewportSize)]],
+             //constant vector_uint2 *viewportSizePointer [[buffer(AAPLVertexInputIndexViewportSize)]],
              constant matrix_float4x4 &rotation [[buffer(2)]],
              constant matrix_float4x4 &ortho [[buffer(3)]])
 {
@@ -42,7 +44,7 @@ vertexShader(uint vertexID [[vertex_id]],
     float3 pixelSpacePosition = vertices[vertexID].position.xyz;
 
     // Get the viewport size and cast to float.
-    vector_float2 viewportSize = vector_float2(*viewportSizePointer);
+    //vector_float2 viewportSize = vector_float2(*viewportSizePointer);
     
 
     // To convert from positions in pixel space to positions in clip-space,

@@ -9,6 +9,7 @@ import MetalKit
 
 class Renderer: NSObject{
     let CUBESIZE:Float = 80.0
+    let MAXDEPTH:Float = 400.0
     let pipelineState: MTLRenderPipelineState
     static var device: MTLDevice!
     static var commandQueue: MTLCommandQueue!
@@ -53,26 +54,30 @@ class Renderer: NSObject{
         metalView.depthStencilPixelFormat = .depth32Float
         pipelineState = Renderer.buildPipelineState("it works")
         _aspect = 0.0
-        //let cube1:Cube = Cube()
-        //todo: create an array of cubes
-        //_cubeFrontTopLeft.CreateModel(withColors: <#T##Float#>, green: <#T##Float#>, blue: <#T##Float#>, cubesize: <#T##Float#>)
-        _cubeFrontTopLeft.CreateModel(red: 1.0, green: 0.0, blue: 0.0, cubesize: CUBESIZE)
-        _cubeArray.append(_cubeFrontTopLeft)
-        _cubeFrontTopRight.CreateModel(red: 1.0, green: 0.0, blue: 0.0, cubesize: CUBESIZE)
-        _cubeArray.append(_cubeFrontTopRight)
         super.init()
-        
+        createCubes()
         metalView.clearColor = MTLClearColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
         metalView.delegate = self
         mtkView(metalView, drawableSizeWillChange: metalView.drawableSize)//metalView.bounds.size)
         
     }
+    
+    func createCubes(){
+        let topLeft = Cube()
+        topLeft.CreateModel(red: 1.0, green: 1.0, blue: 1.0, cubesize: CUBESIZE)
+        topLeft.position = float3(-CUBESIZE, 0.0, 0.0)
+        _cubeArray.append(topLeft)
+
+        let topRight = Cube()
+        topRight.CreateModel(red: 1.0, green: 1.0, blue: 1.0, cubesize: CUBESIZE)
+        topRight.position = float3(CUBESIZE, 0.0, 0.0)
+        _cubeArray.append(topRight)
+    }
     var _cubeArray:[Cube] = []
-    var _cubeFrontTopLeft:Cube = Cube()
-    var _cubeFrontTopRight:Cube = Cube()
     var _aspect:Float
     var _viewport:vector_uint2 = vector_uint2(0, 0)
     var _rotation:Float = 0.0
+    var _cubePosition:float3 = float3(0.0, 0.0, 0.0)
 }
 
 extension Renderer: MTKViewDelegate{
@@ -82,9 +87,8 @@ extension Renderer: MTKViewDelegate{
         _aspect = Float(view.bounds.width)/Float(view.bounds.height)
         _viewport.x = UInt32(size.width)
         _viewport.y = UInt32(size.height)
-        _cubeFrontTopLeft.translation = float3(Float(_viewport.x)/2, Float(_viewport.y) / 2, 200.0)
-        _cubeFrontTopRight.translation = float3(Float(_viewport.x)/2 , Float(_viewport.y) / 2, 200.0)
-        
+        //center the cube in viewport clipping area
+        _cubePosition = float3(Float(_viewport.x)/2, Float(_viewport.y) / 2, MAXDEPTH / 2.0)
     }
     
     func draw(in view: MTKView) {
@@ -101,50 +105,24 @@ extension Renderer: MTKViewDelegate{
         renderEncoder.setViewport(MTLViewport(originX: 0.0, originY: 00, width: Double(_viewport.x), height: Double(_viewport.y), znear: 0.0, zfar: 1.0))
         renderEncoder.setRenderPipelineState(pipelineState)
         
-        var ortho:float4x4 = float4x4(orthoLeft: 0.0, right: Float(_viewport.x), bottom: 0.0, top: Float(_viewport.y), near: 0.0, far: 400.0)
+        var ortho:float4x4 = float4x4(orthoLeft: 0.0, right: Float(_viewport.x), bottom: 0.0, top: Float(_viewport.y), near: 0.0, far: MAXDEPTH)
         renderEncoder.setVertexBytes(&ortho, length: MemoryLayout<float4x4>.stride, index: Int(AAPLOrtho.rawValue))
         
-        
-        //for cube in _cubeArray{
-        
-        do {
-            var cube = _cubeFrontTopLeft
-            var rotation:float4x4 = float4x4(rotation: float3(_rotation, _rotation, 0.0))
-            
-           // let translation:float4x4 = float4x4(translation: _cubeFrontTopLeft.translation)
-            let translation:float4x4 = float4x4(translation: cube.translation)
-            rotation = translation * rotation
-            let translation2:float4x4 = float4x4(translation: float3(0.0, 0.0, 100.0))
-            //rotation = translation * rotation
-            renderEncoder.setVertexBytes(&rotation, length: MemoryLayout<float4x4>.stride, index: Int(AAPLrotation.rawValue))
-            
-            //var verticesSize = MemoryLayout<AAPLVertex>.size * cubeFrontTopLeft.triangleVertices.count
+        for cube in _cubeArray{
+            let rotation:float4x4 = float4x4(rotation: float3(_rotation, _rotation, 0.0))
+            let translation1:float4x4 = cube.translation
+            var modelView = rotation * translation1
+            let translation:float4x4 = float4x4(translation: _cubePosition)
+            modelView = translation * modelView
+            //moves this subcube away from the screen 100 units
+            renderEncoder.setVertexBytes(&modelView, length: MemoryLayout<float4x4>.stride, index: Int(AAPLrotation.rawValue))
+
             renderEncoder.setVertexBytes(cube.triangleVertices, length: MemoryLayout<AAPLVertex>.size * cube.triangleVertices.count, index: Int(AAPLVertexInputIndexVertices.rawValue))
-            
-            //var stride = MemoryLayout<vector_float2>.stride
+
             renderEncoder.setVertexBytes(&_viewport, length: MemoryLayout<vector_float2>.stride, index: Int(AAPLVertexInputIndexViewportSize.rawValue))
             renderEncoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: cube.triangleVertices.count)
         }
-        
-        do {
-            var cube = _cubeFrontTopRight
-            var rotation:float4x4 = float4x4(rotation: float3(_rotation, _rotation, 0.0))
-            
-            let translation1:float4x4 = float4x4(translation: float3((CUBESIZE), 0.0, 0.0))
-           rotation = rotation * translation1
-            let translation:float4x4 = float4x4(translation: cube.translation)
-            rotation = translation * rotation
-            let translation2:float4x4 = float4x4(translation: float3(0.0, 0.0, 100.0))
-            //rotation = translation * rotation
-            renderEncoder.setVertexBytes(&rotation, length: MemoryLayout<float4x4>.stride, index: Int(AAPLrotation.rawValue))
-            
-            //var verticesSize = MemoryLayout<AAPLVertex>.size * cubeFrontTopLeft.triangleVertices.count
-            renderEncoder.setVertexBytes(cube.triangleVertices, length: MemoryLayout<AAPLVertex>.size * cube.triangleVertices.count, index: Int(AAPLVertexInputIndexVertices.rawValue))
-            
-            //var stride = MemoryLayout<vector_float2>.stride
-            renderEncoder.setVertexBytes(&_viewport, length: MemoryLayout<vector_float2>.stride, index: Int(AAPLVertexInputIndexViewportSize.rawValue))
-            renderEncoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: cube.triangleVertices.count)
-        }
+
         renderEncoder.endEncoding()
         guard let drawable = view.currentDrawable else {
           return
