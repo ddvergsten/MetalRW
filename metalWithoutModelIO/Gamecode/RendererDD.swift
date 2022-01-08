@@ -113,6 +113,7 @@ extension Renderer: MTKViewDelegate{
         renderEncoder.setRenderPipelineState(pipelineState)
         
         var ortho:float4x4 = float4x4(orthoLeft: 0.0, right: Float(_viewport.x), bottom: 0.0, top: Float(_viewport.y), near: 0.0, far: MAXDEPTH)
+        
         renderEncoder.setVertexBytes(&ortho, length: MemoryLayout<float4x4>.stride, index: Int(AAPLOrtho.rawValue))
         
         for cube in _cubeArray{
@@ -124,7 +125,9 @@ extension Renderer: MTKViewDelegate{
             //moves this subcube away from the screen 100 units
             renderEncoder.setVertexBytes(&modelView, length: MemoryLayout<float4x4>.stride, index: Int(AAPLrotation.rawValue))
 
-            renderEncoder.setVertexBytes(cube.triangleVertices, length: MemoryLayout<AAPLVertex>.size * cube.triangleVertices.count, index: Int(AAPLVertexInputIndexVertices.rawValue))
+            //use a buffer
+            renderEncoder.setVertexBuffer(cube.buffer, offset: 0, index: Int(AAPLVertexInputIndexVertices.rawValue))
+            //renderEncoder.setVertexBytes(cube.triangleVertices, length: MemoryLayout<AAPLVertex>.size * //cube.triangleVertices.count, index: Int(AAPLVertexInputIndexVertices.rawValue))
 
             renderEncoder.setVertexBytes(&_viewport, length: MemoryLayout<vector_float2>.stride, index: Int(AAPLVertexInputIndexViewportSize.rawValue))
             renderEncoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: cube.triangleVertices.count)
