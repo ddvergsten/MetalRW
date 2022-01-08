@@ -18,7 +18,7 @@ class Cube:NSObject{
     var frontColor:vector_float4 = vector_float4(0.0, 1.0, 0.0, 1.0)
     var backColor:vector_float4 = vector_float4(0.0, 0.0, 1.0, 1.0)
     
-    var bordercolor:vector_float4 = vector_float4(0.0, 0.0, 0.0, 1.0)
+    var bordercolor:vector_float4 = vector_float4(1.0, 1.0, 1.0, 1.0)
     var triangleVertices:[AAPLVertex] = []
     var position:float3 = float3(0.0, 0.0, 0.0)
     var translation:float4x4  {
@@ -67,7 +67,7 @@ class Cube:NSObject{
             AAPLVertex(position: vector_float3(-(Float(cubeSizeHalf)), -Float(cubeSizeHalf ), Float(zvalue)), color: bordercolor),
             AAPLVertex(position: vector_float3(-(Float(cubeColorSizeHalf)), Float(cubeSizeHalf), Float(zvalue)), color: bordercolor),
             AAPLVertex(position: vector_float3(-Float(cubeColorSizeHalf), -Float(cubeSizeHalf ), Float(zvalue)), color: bordercolor),
-            
+
             //border right
             AAPLVertex(position: vector_float3((Float(cubeSizeHalf)), -Float(cubeSizeHalf ), Float(zvalue)), color: bordercolor),
             AAPLVertex(position: vector_float3((Float(cubeSizeHalf)), Float(cubeSizeHalf), Float(zvalue)), color: bordercolor),
@@ -79,45 +79,45 @@ class Cube:NSObject{
             
             
             //back side///////////////////////////////////
-            AAPLVertex(position: vector_float3((Float(cubeColorSizeHalf)), Float(-cubeColorSizeHalf), Float(zvalue + cubeColorSizeFull)), color: backColor),
-            AAPLVertex(position: vector_float3(Float(cubeColorSizeHalf), Float(cubeColorSizeHalf), Float(zvalue + cubeColorSizeFull)), color: backColor),
-            AAPLVertex(position: vector_float3(-(Float(cubeColorSizeHalf)), -Float(cubeColorSizeHalf), Float(zvalue + cubeColorSizeFull)), color: backColor),
+            AAPLVertex(position: vector_float3((Float(cubeColorSizeHalf)), Float(-cubeColorSizeHalf), Float(zvalue + cubeSizeFull)), color: backColor),
+            AAPLVertex(position: vector_float3(Float(cubeColorSizeHalf), Float(cubeColorSizeHalf), Float(zvalue + cubeSizeFull)), color: backColor),
+            AAPLVertex(position: vector_float3(-(Float(cubeColorSizeHalf)), -Float(cubeColorSizeHalf), Float(zvalue + cubeSizeFull)), color: backColor),
             
-            AAPLVertex(position: vector_float3((Float(cubeColorSizeHalf)), Float(cubeColorSizeHalf), Float(zvalue + cubeColorSizeFull)), color: backColor),
-            AAPLVertex(position: vector_float3(Float(-cubeColorSizeHalf), Float(cubeColorSizeHalf), Float(zvalue + cubeColorSizeFull)), color: backColor),
-            AAPLVertex(position: vector_float3(-(Float(cubeColorSizeHalf)), -Float(cubeColorSizeHalf), Float(zvalue + cubeColorSizeFull)), color: backColor),
+            AAPLVertex(position: vector_float3((Float(cubeColorSizeHalf)), Float(cubeColorSizeHalf), Float(zvalue + cubeSizeFull)), color: backColor),
+            AAPLVertex(position: vector_float3(Float(-cubeColorSizeHalf), Float(cubeColorSizeHalf), Float(zvalue + cubeSizeFull)), color: backColor),
+            AAPLVertex(position: vector_float3(-(Float(cubeColorSizeHalf)), -Float(cubeColorSizeHalf), Float(zvalue + cubeSizeFull)), color: backColor),
             //border top
-            AAPLVertex(position: vector_float3(-(Float(cubeSizeHalf)), Float(cubeSizeHalf), Float(zvalue + cubeColorSizeFull)), color: bordercolor),
-            AAPLVertex(position: vector_float3(-(Float(cubeSizeHalf)), Float(cubeColorSizeHalf ), Float(zvalue + cubeColorSizeFull)), color: bordercolor),
-            AAPLVertex(position: vector_float3(Float(cubeSizeHalf), Float(cubeSizeHalf), Float(zvalue + cubeColorSizeFull)), color: bordercolor),
+            AAPLVertex(position: vector_float3(-(Float(cubeSizeHalf)), Float(cubeSizeHalf), Float(zvalue + cubeSizeFull)), color: bordercolor),
+            AAPLVertex(position: vector_float3(-(Float(cubeSizeHalf)), Float(cubeColorSizeHalf ), Float(zvalue + cubeSizeFull)), color: bordercolor),
+            AAPLVertex(position: vector_float3(Float(cubeSizeHalf), Float(cubeSizeHalf), Float(zvalue + cubeSizeFull)), color: bordercolor),
 
-            AAPLVertex(position: vector_float3((Float(cubeSizeHalf)), Float(cubeSizeHalf), Float(zvalue + cubeColorSizeFull)), color: bordercolor),
-            AAPLVertex(position: vector_float3(-(Float(cubeSizeHalf)), Float(cubeColorSizeHalf ), Float(zvalue + cubeColorSizeFull)), color: bordercolor),
-            AAPLVertex(position: vector_float3(Float(cubeSizeHalf), Float(cubeColorSizeHalf ), Float(zvalue + cubeColorSizeFull)), color: bordercolor),
+            AAPLVertex(position: vector_float3((Float(cubeSizeHalf)), Float(cubeSizeHalf), Float(zvalue + cubeSizeFull)), color: bordercolor),
+            AAPLVertex(position: vector_float3(-(Float(cubeSizeHalf)), Float(cubeColorSizeHalf ), Float(zvalue + cubeSizeFull)), color: bordercolor),
+            AAPLVertex(position: vector_float3(Float(cubeSizeHalf), Float(cubeColorSizeHalf ), Float(zvalue + cubeSizeFull)), color: bordercolor),
             //border bottom
-            AAPLVertex(position: vector_float3(-(Float(cubeSizeHalf)), -Float(cubeColorSizeHalf), Float(zvalue + cubeColorSizeFull)), color: bordercolor),
-            AAPLVertex(position: vector_float3(-(Float(cubeSizeHalf)), -Float(cubeSizeHalf ), Float(zvalue + cubeColorSizeFull)), color: bordercolor),
-            AAPLVertex(position: vector_float3(Float(cubeSizeHalf), -Float(cubeColorSizeHalf), Float(zvalue + cubeColorSizeFull)), color: bordercolor),
+            AAPLVertex(position: vector_float3(-(Float(cubeSizeHalf)), -Float(cubeColorSizeHalf), Float(zvalue + cubeSizeFull)), color: bordercolor),
+            AAPLVertex(position: vector_float3(-(Float(cubeSizeHalf)), -Float(cubeSizeHalf ), Float(zvalue + cubeSizeFull)), color: bordercolor),
+            AAPLVertex(position: vector_float3(Float(cubeSizeHalf), -Float(cubeColorSizeHalf), Float(zvalue + cubeSizeFull)), color: bordercolor),
 
-            AAPLVertex(position: vector_float3((Float(cubeSizeHalf)), -Float(cubeColorSizeHalf), Float(zvalue + cubeColorSizeFull)), color: bordercolor),
-            AAPLVertex(position: vector_float3(-(Float(cubeSizeHalf)), -Float(cubeSizeHalf ), Float(zvalue + cubeColorSizeFull)), color: bordercolor),
-            AAPLVertex(position: vector_float3(Float(cubeSizeHalf), -Float(cubeSizeHalf ), Float(zvalue + cubeColorSizeFull)), color: bordercolor),
+            AAPLVertex(position: vector_float3((Float(cubeSizeHalf)), -Float(cubeColorSizeHalf), Float(zvalue + cubeSizeFull)), color: bordercolor),
+            AAPLVertex(position: vector_float3(-(Float(cubeSizeHalf)), -Float(cubeSizeHalf ), Float(zvalue + cubeSizeFull)), color: bordercolor),
+            AAPLVertex(position: vector_float3(Float(cubeSizeHalf), -Float(cubeSizeHalf ), Float(zvalue + cubeSizeFull)), color: bordercolor),
             //border left
-            AAPLVertex(position: vector_float3(-(Float(cubeSizeHalf)), Float(cubeSizeHalf), Float(zvalue + cubeColorSizeFull)), color: bordercolor),
-            AAPLVertex(position: vector_float3(-(Float(cubeSizeHalf)), -Float(cubeSizeHalf ), Float(zvalue + cubeColorSizeFull)), color: bordercolor),
-            AAPLVertex(position: vector_float3(-Float(cubeColorSizeHalf), Float(cubeSizeHalf), Float(zvalue + cubeColorSizeFull)), color: bordercolor),
+            AAPLVertex(position: vector_float3(-(Float(cubeSizeHalf)), Float(cubeSizeHalf), Float(zvalue + cubeSizeFull)), color: bordercolor),
+            AAPLVertex(position: vector_float3(-(Float(cubeSizeHalf)), -Float(cubeSizeHalf ), Float(zvalue + cubeSizeFull)), color: bordercolor),
+            AAPLVertex(position: vector_float3(-Float(cubeColorSizeHalf), Float(cubeSizeHalf), Float(zvalue + cubeSizeFull)), color: bordercolor),
 
-            AAPLVertex(position: vector_float3(-(Float(cubeColorSizeHalf)), Float(cubeSizeHalf), Float(zvalue + cubeColorSizeFull)), color: bordercolor),
-            AAPLVertex(position: vector_float3(-(Float(cubeSizeHalf)), -Float(cubeSizeHalf ), Float(zvalue + cubeColorSizeFull)), color: bordercolor),
-            AAPLVertex(position: vector_float3(-Float(cubeColorSizeHalf), -Float(cubeSizeHalf ), Float(zvalue + cubeColorSizeFull)), color: bordercolor),
+            AAPLVertex(position: vector_float3(-(Float(cubeColorSizeHalf)), Float(cubeSizeHalf), Float(zvalue + cubeSizeFull)), color: bordercolor),
+            AAPLVertex(position: vector_float3(-(Float(cubeSizeHalf)), -Float(cubeSizeHalf ), Float(zvalue + cubeSizeFull)), color: bordercolor),
+            AAPLVertex(position: vector_float3(-Float(cubeColorSizeHalf), -Float(cubeSizeHalf ), Float(zvalue + cubeSizeFull)), color: bordercolor),
             //border right
-            AAPLVertex(position: vector_float3((Float(cubeSizeHalf)), Float(cubeSizeHalf), Float(zvalue + cubeColorSizeFull)), color: bordercolor),
-            AAPLVertex(position: vector_float3((Float(cubeSizeHalf)), -Float(cubeSizeHalf ), Float(zvalue + cubeColorSizeFull)), color: bordercolor),
-            AAPLVertex(position: vector_float3(Float(cubeColorSizeHalf), Float(cubeSizeHalf), Float(zvalue + cubeColorSizeFull)), color: bordercolor),
+            AAPLVertex(position: vector_float3((Float(cubeSizeHalf)), Float(cubeSizeHalf), Float(zvalue + cubeSizeFull)), color: bordercolor),
+            AAPLVertex(position: vector_float3((Float(cubeSizeHalf)), -Float(cubeSizeHalf ), Float(zvalue + cubeSizeFull)), color: bordercolor),
+            AAPLVertex(position: vector_float3(Float(cubeColorSizeHalf), Float(cubeSizeHalf), Float(zvalue + cubeSizeFull)), color: bordercolor),
 
-            AAPLVertex(position: vector_float3((Float(cubeColorSizeHalf)), Float(cubeSizeHalf), Float(zvalue + cubeColorSizeFull)), color: bordercolor),
-            AAPLVertex(position: vector_float3((Float(cubeSizeHalf)), -Float(cubeSizeHalf ), Float(zvalue + cubeColorSizeFull)), color: bordercolor),
-            AAPLVertex(position: vector_float3(Float(cubeColorSizeHalf), -Float(cubeSizeHalf ), Float(zvalue + cubeColorSizeFull)), color: bordercolor),
+            AAPLVertex(position: vector_float3((Float(cubeColorSizeHalf)), Float(cubeSizeHalf), Float(zvalue + cubeSizeFull)), color: bordercolor),
+            AAPLVertex(position: vector_float3((Float(cubeSizeHalf)), -Float(cubeSizeHalf ), Float(zvalue + cubeSizeFull)), color: bordercolor),
+            AAPLVertex(position: vector_float3(Float(cubeColorSizeHalf), -Float(cubeSizeHalf ), Float(zvalue + cubeSizeFull)), color: bordercolor),
             
             
             //right side//////////////////////////////////////
@@ -132,7 +132,7 @@ class Cube:NSObject{
             AAPLVertex(position: vector_float3(Float(cubeSizeHalf), -Float(cubeSizeHalf), Float(zvalue)), color: bordercolor),
             AAPLVertex(position: vector_float3(Float(cubeSizeHalf), Float(cubeSizeHalf), Float(zvalue)), color: bordercolor),
             AAPLVertex(position: vector_float3(Float(cubeSizeHalf), Float(cubeSizeHalf), Float(zvalue + bordersize)), color: bordercolor),
-            
+
             AAPLVertex(position: vector_float3((Float(cubeSizeHalf)), -Float(cubeSizeHalf), Float(zvalue)), color: bordercolor),
             AAPLVertex(position: vector_float3((Float(cubeSizeHalf)), Float(cubeSizeHalf), Float(zvalue + bordersize)), color: bordercolor),
             AAPLVertex(position: vector_float3(Float(cubeSizeHalf), -Float(cubeSizeHalf), Float(zvalue + bordersize)), color: bordercolor),
@@ -140,38 +140,52 @@ class Cube:NSObject{
             AAPLVertex(position: vector_float3(Float(cubeSizeHalf), -Float(cubeSizeHalf), Float(zvalue + cubeColorSizeFull + bordersize)), color: bordercolor),
             AAPLVertex(position: vector_float3(Float(cubeSizeHalf), Float(cubeSizeHalf), Float(zvalue + cubeColorSizeFull + bordersize)), color: bordercolor),
             AAPLVertex(position: vector_float3(Float(cubeSizeHalf), Float(cubeSizeHalf), Float(zvalue + bordersize + cubeColorSizeFull + bordersize)), color: bordercolor),
-            
+
             AAPLVertex(position: vector_float3((Float(cubeSizeHalf)), -Float(cubeSizeHalf), Float(zvalue + cubeColorSizeFull + bordersize)), color: bordercolor),
             AAPLVertex(position: vector_float3((Float(cubeSizeHalf)), Float(cubeSizeHalf), Float(zvalue + bordersize + cubeColorSizeFull + bordersize)), color: bordercolor),
             AAPLVertex(position: vector_float3(Float(cubeSizeHalf), -Float(cubeSizeHalf), Float(zvalue + bordersize + cubeColorSizeFull + bordersize)), color: bordercolor),
             //top border
+            AAPLVertex(position: vector_float3(Float(cubeSizeHalf), Float(cubeColorSizeHalf), Float(zvalue )), color: bordercolor),
+            AAPLVertex(position: vector_float3(Float(cubeSizeHalf), Float(cubeSizeHalf), Float(zvalue )), color: bordercolor),
+            AAPLVertex(position: vector_float3(Float(cubeSizeHalf), Float(cubeSizeHalf), Float(zvalue + cubeSizeFull )), color: bordercolor),
+
+            AAPLVertex(position: vector_float3((Float(cubeSizeHalf)), Float(cubeColorSizeHalf), Float(zvalue )), color: bordercolor),
+            AAPLVertex(position: vector_float3((Float(cubeSizeHalf)), Float(cubeSizeHalf), Float(zvalue + cubeSizeFull)), color: bordercolor),
+            AAPLVertex(position: vector_float3(Float(cubeSizeHalf), Float(cubeColorSizeHalf), Float(zvalue + cubeSizeFull)), color: bordercolor),
             //bottom border
+            AAPLVertex(position: vector_float3(Float(cubeSizeHalf), -Float(cubeSizeHalf), Float(zvalue )), color: bordercolor),
+            AAPLVertex(position: vector_float3(Float(cubeSizeHalf), -Float(cubeColorSizeHalf), Float(zvalue )), color: bordercolor),
+            AAPLVertex(position: vector_float3(Float(cubeSizeHalf), -Float(cubeColorSizeHalf), Float(zvalue + cubeSizeFull )), color: bordercolor),
+
+            AAPLVertex(position: vector_float3((Float(cubeSizeHalf)), -Float(cubeSizeHalf), Float(zvalue )), color: bordercolor),
+            AAPLVertex(position: vector_float3((Float(cubeSizeHalf)), -Float(cubeColorSizeHalf), Float(zvalue + cubeSizeFull)), color: bordercolor),
+            AAPLVertex(position: vector_float3(Float(cubeSizeHalf), -Float(cubeSizeHalf), Float(zvalue + cubeSizeFull)), color: bordercolor),
             //left side///////////////////////////////////////
-            AAPLVertex(position: vector_float3(-Float(cubeColorSizeHalf), Float(cubeColorSizeHalf), Float(zvalue)), color: leftColor),
-            AAPLVertex(position: vector_float3(-Float(cubeColorSizeHalf), -Float(cubeColorSizeHalf), Float(zvalue)), color: leftColor),
-            AAPLVertex(position: vector_float3(-Float(cubeColorSizeHalf), -Float(cubeColorSizeHalf), Float(zvalue + cubeColorSizeFull)), color: leftColor),
+            AAPLVertex(position: vector_float3(-Float(cubeSizeHalf), Float(cubeColorSizeHalf), Float(zvalue + bordersize)), color: leftColor),
+            AAPLVertex(position: vector_float3(-Float(cubeSizeHalf), -Float(cubeColorSizeHalf), Float(zvalue + bordersize)), color: leftColor),
+            AAPLVertex(position: vector_float3(-Float(cubeSizeHalf), -Float(cubeColorSizeHalf), Float(zvalue + cubeColorSizeFull + bordersize)), color: leftColor),
             
-            AAPLVertex(position: vector_float3((-Float(cubeColorSizeHalf)), Float(cubeColorSizeHalf), Float(zvalue)), color: leftColor),
-            AAPLVertex(position: vector_float3(-Float(cubeColorSizeHalf), -Float(cubeColorSizeHalf), Float(zvalue + cubeColorSizeFull)), color: leftColor),
-            AAPLVertex(position: vector_float3((-Float(cubeColorSizeHalf)), Float(cubeColorSizeHalf), Float(zvalue + cubeColorSizeFull)), color: leftColor),
+            AAPLVertex(position: vector_float3((-Float(cubeSizeHalf)), Float(cubeColorSizeHalf), Float(zvalue + bordersize)), color: leftColor),
+            AAPLVertex(position: vector_float3(-Float(cubeSizeHalf), -Float(cubeColorSizeHalf), Float(zvalue + cubeColorSizeFull + bordersize)), color: leftColor),
+            AAPLVertex(position: vector_float3((-Float(cubeSizeHalf)), Float(cubeColorSizeHalf), Float(zvalue + cubeColorSizeFull + bordersize)), color: leftColor),
             
             //top side/////////////////////////////////////////////
-            AAPLVertex(position: vector_float3(Float(cubeColorSizeHalf), Float(cubeColorSizeHalf), Float(zvalue)), color: topColor),
-            AAPLVertex(position: vector_float3(-Float(cubeColorSizeHalf), Float(cubeColorSizeHalf), Float(zvalue + cubeColorSizeFull)), color: topColor),
-            AAPLVertex(position: vector_float3(Float(cubeColorSizeHalf), Float(cubeColorSizeHalf), Float(zvalue + cubeColorSizeFull)), color: topColor),
+            AAPLVertex(position: vector_float3(Float(cubeColorSizeHalf), Float(cubeSizeHalf), Float(zvalue + bordersize)), color: topColor),
+            AAPLVertex(position: vector_float3(-Float(cubeColorSizeHalf), Float(cubeSizeHalf), Float(zvalue + cubeColorSizeFull + bordersize)), color: topColor),
+            AAPLVertex(position: vector_float3(Float(cubeColorSizeHalf), Float(cubeSizeHalf), Float(zvalue + cubeColorSizeFull + bordersize)), color: topColor),
             
-            AAPLVertex(position: vector_float3(Float(cubeColorSizeHalf), Float(cubeColorSizeHalf), Float(zvalue)), color: topColor),
-            AAPLVertex(position: vector_float3(-Float(cubeColorSizeHalf), Float(cubeColorSizeHalf), Float(zvalue)), color: topColor),
-            AAPLVertex(position: vector_float3(-Float(cubeColorSizeHalf), Float(cubeColorSizeHalf), Float(zvalue + cubeColorSizeFull)), color: topColor),
+            AAPLVertex(position: vector_float3(Float(cubeColorSizeHalf), Float(cubeSizeHalf), Float(zvalue + bordersize)), color: topColor),
+            AAPLVertex(position: vector_float3(-Float(cubeColorSizeHalf), Float(cubeSizeHalf), Float(zvalue + bordersize)), color: topColor),
+            AAPLVertex(position: vector_float3(-Float(cubeColorSizeHalf), Float(cubeSizeHalf), Float(zvalue + cubeColorSizeFull + bordersize)), color: topColor),
             
             //bottom side////////////////////////////////////////////////
-            AAPLVertex(position: vector_float3(Float(cubeColorSizeHalf), -Float(cubeColorSizeHalf), Float(zvalue)), color: bottomColor),
-            AAPLVertex(position: vector_float3(Float(cubeColorSizeHalf), -Float(cubeColorSizeHalf), Float(zvalue + cubeColorSizeFull)), color: bottomColor),
-            AAPLVertex(position: vector_float3(-Float(cubeColorSizeHalf), -Float(cubeColorSizeHalf), Float(zvalue + cubeColorSizeFull)), color: bottomColor),
+            AAPLVertex(position: vector_float3(Float(cubeColorSizeHalf), -Float(cubeSizeHalf), Float(zvalue + bordersize)), color: bottomColor),
+            AAPLVertex(position: vector_float3(Float(cubeColorSizeHalf), -Float(cubeSizeHalf), Float(zvalue + cubeColorSizeFull + bordersize)), color: bottomColor),
+            AAPLVertex(position: vector_float3(-Float(cubeColorSizeHalf), -Float(cubeSizeHalf), Float(zvalue + cubeColorSizeFull + bordersize)), color: bottomColor),
             
-            AAPLVertex(position: vector_float3(Float(cubeColorSizeHalf), -Float(cubeColorSizeHalf), Float(zvalue)), color: bottomColor),
-            AAPLVertex(position: vector_float3(-Float(cubeColorSizeHalf), -Float(cubeColorSizeHalf), Float(zvalue + cubeColorSizeFull)), color: bottomColor),
-            AAPLVertex(position: vector_float3(-Float(cubeColorSizeHalf), -Float(cubeColorSizeHalf), Float(zvalue)), color: bottomColor),
+            AAPLVertex(position: vector_float3(Float(cubeColorSizeHalf), -Float(cubeSizeHalf), Float(zvalue + bordersize)), color: bottomColor),
+            AAPLVertex(position: vector_float3(-Float(cubeColorSizeHalf), -Float(cubeSizeHalf), Float(zvalue + cubeColorSizeFull + bordersize)), color: bottomColor),
+            AAPLVertex(position: vector_float3(-Float(cubeColorSizeHalf), -Float(cubeSizeHalf), Float(zvalue + bordersize)), color: bottomColor),
             
         ]
         //return triangleVertices
