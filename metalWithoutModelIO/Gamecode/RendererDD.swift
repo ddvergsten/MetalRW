@@ -117,7 +117,7 @@ extension Renderer: MTKViewDelegate{
         renderEncoder.setVertexBytes(&ortho, length: MemoryLayout<float4x4>.stride, index: Int(AAPLOrtho.rawValue))
         
         for cube in _cubeArray{
-            let rotation:float4x4 = float4x4(rotation: float3(_rotation, 0.0, 0.0))
+            let rotation:float4x4 = float4x4(rotation: float3(0.0, _rotation, 0.0))
             let translation1:float4x4 = cube.translation
             var modelView = rotation * translation1
             let translation:float4x4 = float4x4(translation: _cubePosition)
