@@ -9,8 +9,8 @@ import MetalKit
 
 class Renderer: NSObject{
     let CUBESIZE:Float = 80.0
-    let CUBESPACING:Float = 5.0
-    let MAXDEPTH:Float = 400.0
+    let CUBESPACING:Float = 4.0
+    let MAXDEPTH:Float = 1000.0
     let pipelineState: MTLRenderPipelineState
     static var device: MTLDevice!
     static var commandQueue: MTLCommandQueue!
@@ -64,12 +64,12 @@ class Renderer: NSObject{
     }
     func addCube(position:float3){
         let cube = Cube()
-        cube.CreateModel(red: 1.0, green: 1.0, blue: 1.0, cubesize: CUBESIZE )
+        cube.CreateModel(red: 1.0, green: 1.0, blue: 1.0, cubesize: CUBESIZE, bordersize:CUBESPACING )
         cube.position = position
         _cubeArray.append(cube)
     }
     func createCubes(){
-        var cubePlusSpace = CUBESIZE + CUBESPACING
+        let cubePlusSpace = CUBESIZE //+ CUBESPACING
         for x in 0...2{
             for y in 0...2{
                 for z in 0...2{
@@ -79,10 +79,6 @@ class Renderer: NSObject{
             }
             
         }
-//        addCube(position: float3(-CUBESIZE, 0.0, 0.0))
-//        addCube(position: float3(CUBESIZE, 0.0, 0.0))
-//        addCube(position: float3(CUBESIZE, 0.0, CUBESIZE * 2))
-//        addCube(position: float3(-CUBESIZE, 0.0, CUBESIZE * 2))
     }
     var _cubeArray:[Cube] = []
     var _aspect:Float
@@ -120,7 +116,7 @@ extension Renderer: MTKViewDelegate{
         renderEncoder.setVertexBytes(&ortho, length: MemoryLayout<float4x4>.stride, index: Int(AAPLOrtho.rawValue))
         
         for cube in _cubeArray{
-            let rotation:float4x4 = float4x4(rotation: float3(_rotation, _rotation, 0.0))
+            let rotation:float4x4 = float4x4(rotation: float3(0.0, _rotation, 0.0))
             let translation1:float4x4 = cube.translation
             var modelView = rotation * translation1
             let translation:float4x4 = float4x4(translation: _cubePosition)

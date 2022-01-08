@@ -42,7 +42,7 @@
 /* Begin PBXFileReference section */
 		915AB013277C71F300360C19 /* MathLirbrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathLirbrary.swift; sourceTree = "<group>"; };
 		915AB015277D38CB00360C19 /* Cube.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cube.swift; sourceTree = "<group>"; };
-		91C43B98276A319A00AC9C68 /* metalWithoutModelIO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = metalWithoutModelIO.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		91C43B98276A319A00AC9C68 /* RubiksCube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RubiksCube.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		91C43B9B276A319A00AC9C68 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		91C43B9D276A319A00AC9C68 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		91C43B9F276A319A00AC9C68 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -96,8 +96,8 @@
 		91C43B8F276A319A00AC9C68 = {
 			isa = PBXGroup;
 			children = (
+				91C43B9A276A319A00AC9C68 /* Gamecode */,
 				915AB012277C71D600360C19 /* Utility */,
-				91C43B9A276A319A00AC9C68 /* metalWithoutModelIO */,
 				91C43BB1276A319A00AC9C68 /* metalWithoutModelIOTests */,
 				91C43BBB276A319A00AC9C68 /* metalWithoutModelIOUITests */,
 				91C43B99276A319A00AC9C68 /* Products */,
@@ -107,14 +107,14 @@
 		91C43B99276A319A00AC9C68 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				91C43B98276A319A00AC9C68 /* metalWithoutModelIO.app */,
+				91C43B98276A319A00AC9C68 /* RubiksCube.app */,
 				91C43BAE276A319A00AC9C68 /* metalWithoutModelIOTests.xctest */,
 				91C43BB8276A319A00AC9C68 /* metalWithoutModelIOUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		91C43B9A276A319A00AC9C68 /* metalWithoutModelIO */ = {
+		91C43B9A276A319A00AC9C68 /* Gamecode */ = {
 			isa = PBXGroup;
 			children = (
 				91C43B9B276A319A00AC9C68 /* AppDelegate.swift */,
@@ -129,7 +129,7 @@
 				91C43BCD276A329600AC9C68 /* AAPLShaderTypes.h */,
 				915AB015277D38CB00360C19 /* Cube.swift */,
 			);
-			path = metalWithoutModelIO;
+			path = Gamecode;
 			sourceTree = "<group>";
 		};
 		91C43BB1276A319A00AC9C68 /* metalWithoutModelIOTests */ = {
@@ -152,9 +152,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		91C43B97276A319A00AC9C68 /* metalWithoutModelIO */ = {
+		91C43B97276A319A00AC9C68 /* RubiksCube */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 91C43BC2276A319A00AC9C68 /* Build configuration list for PBXNativeTarget "metalWithoutModelIO" */;
+			buildConfigurationList = 91C43BC2276A319A00AC9C68 /* Build configuration list for PBXNativeTarget "RubiksCube" */;
 			buildPhases = (
 				91C43B94276A319A00AC9C68 /* Sources */,
 				91C43B95276A319A00AC9C68 /* Frameworks */,
@@ -164,9 +164,9 @@
 			);
 			dependencies = (
 			);
-			name = metalWithoutModelIO;
+			name = RubiksCube;
 			productName = metalWithoutModelIO;
-			productReference = 91C43B98276A319A00AC9C68 /* metalWithoutModelIO.app */;
+			productReference = 91C43B98276A319A00AC9C68 /* RubiksCube.app */;
 			productType = "com.apple.product-type.application";
 		};
 		91C43BAD276A319A00AC9C68 /* metalWithoutModelIOTests */ = {
@@ -241,7 +241,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				91C43B97276A319A00AC9C68 /* metalWithoutModelIO */,
+				91C43B97276A319A00AC9C68 /* RubiksCube */,
 				91C43BAD276A319A00AC9C68 /* metalWithoutModelIOTests */,
 				91C43BB7276A319A00AC9C68 /* metalWithoutModelIOUITests */,
 			);
@@ -312,12 +312,12 @@
 /* Begin PBXTargetDependency section */
 		91C43BB0276A319A00AC9C68 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 91C43B97276A319A00AC9C68 /* metalWithoutModelIO */;
+			target = 91C43B97276A319A00AC9C68 /* RubiksCube */;
 			targetProxy = 91C43BAF276A319A00AC9C68 /* PBXContainerItemProxy */;
 		};
 		91C43BBA276A319A00AC9C68 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 91C43B97276A319A00AC9C68 /* metalWithoutModelIO */;
+			target = 91C43B97276A319A00AC9C68 /* RubiksCube */;
 			targetProxy = 91C43BB9276A319A00AC9C68 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -464,10 +464,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = A3639RGZ9S;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = metalWithoutModelIO/Info.plist;
+				INFOPLIST_FILE = Gamecode/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Cube3DGame;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -478,11 +478,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dvergsten.cubegame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = metalWithoutModelIO/AAPLShaderTypes.h;
+				SWIFT_OBJC_BRIDGING_HEADER = Gamecode/AAPLShaderTypes.h;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -494,10 +494,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = A3639RGZ9S;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = metalWithoutModelIO/Info.plist;
+				INFOPLIST_FILE = Gamecode/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Cube3DGame;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -508,11 +508,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dvergsten.cubegame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = metalWithoutModelIO/AAPLShaderTypes.h;
+				SWIFT_OBJC_BRIDGING_HEADER = Gamecode/AAPLShaderTypes.h;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -626,7 +626,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		91C43BC2276A319A00AC9C68 /* Build configuration list for PBXNativeTarget "metalWithoutModelIO" */ = {
+		91C43BC2276A319A00AC9C68 /* Build configuration list for PBXNativeTarget "RubiksCube" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				91C43BC3276A319A00AC9C68 /* Debug */,
